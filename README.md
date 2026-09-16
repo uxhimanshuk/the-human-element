@@ -122,6 +122,13 @@ Open it straight from disk.
 
 ## See also
 
+[`to-scale`](https://uxrhimanshu.github.io/to-scale/) — the breach timelines in this
+dataset, drawn as architectural sections. `pipeline/timelines.py` derives the figures it
+uses: median 30.4 days to discovery, 2 days to containment on the 93 incidents recording
+both. It also turned up something this study should state plainly — **not one
+error-caused breach in the database records a discovery duration at all.** The incidents
+this study is about are exactly the ones nobody timed.
+
 [`clicked-through`](https://github.com/uxrhimanshu/clicked-through) — the
 qualitative counterpart. This study establishes from incident records that
 warnings and defaults fail at scale, but cannot say *why* anyone proceeded,
