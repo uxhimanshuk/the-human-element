@@ -125,9 +125,11 @@ Open it straight from disk.
 [`to-scale`](https://uxrhimanshu.github.io/to-scale/) — the breach timelines in this
 dataset, drawn as architectural sections. `pipeline/timelines.py` derives the figures it
 uses: median 30.4 days to discovery, 2 days to containment on the 93 incidents recording
-both. It also turned up something this study should state plainly — **not one
-error-caused breach in the database records a discovery duration at all.** The incidents
-this study is about are exactly the ones nobody timed.
+both. It also turned up a finding that belongs to this study rather than that one —
+**a mistake takes longer to find than an attacker.** Error-caused breaches are discovered
+after a median of **91.3 days** (n=297); hacking after **60.9** (n=309). Nobody conceals a
+misconfiguration, and it still takes half again as long to notice as an adversary who is
+actively hiding, which is the strongest version yet of this study's central claim.
 
 [`clicked-through`](https://github.com/uxrhimanshu/clicked-through) — the
 qualitative counterpart. This study establishes from incident records that

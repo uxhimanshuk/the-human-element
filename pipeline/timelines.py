@@ -67,17 +67,29 @@ def main() -> None:
     print("incidents in archive: %s\n" % format(len(records), ","))
 
     per_phase = {p: [] for p in PHASES}
-    error_discovery = []
+    # VCDB action keys are lowercase. An earlier version of this script tested
+    # for "Error", matched nothing, and reported that no error-caused breach
+    # records a discovery time — which was published before anyone noticed.
+    # Asserted below rather than left to be got wrong again.
+    error_discovery, hacking_discovery = [], []
     for record in records:
         timeline = record.get("timeline") or {}
         for phase in PHASES:
             value = days(timeline, phase)
             if value is not None:
                 per_phase[phase].append(value)
-        if "Error" in (record.get("action") or {}):
-            value = days(timeline, "discovery")
-            if value is not None:
-                error_discovery.append(value)
+        actions = set((record.get("action") or {}).keys())
+        value = days(timeline, "discovery")
+        if value is None:
+            continue
+        if actions == {"error"}:
+            error_discovery.append(value)
+        elif "hacking" in actions and "error" not in actions:
+            hacking_discovery.append(value)
+
+    assert error_discovery, (
+        "no error-caused incident matched — check the action key casing, "
+        "which is lowercase in VCDB")
 
     for phase in PHASES:
         values = per_phase[phase]
@@ -87,10 +99,16 @@ def main() -> None:
         print("%-14s n=%-5s median %8.2f d   p25 %8.2f   p75 %9.2f"
               % (phase, s["n"], s["median_days"], s["p25_days"], s["p75_days"]))
 
-    print("\nerror-caused breaches with a recorded discovery time: %d" % len(error_discovery))
-    if not error_discovery:
-        print("  None. The incidents this study is about are exactly the ones whose")
-        print("  timelines nobody reconstructed, which is worth stating out loud.")
+    # The comparison this study exists to make: a mistake nobody is hiding,
+    # against an adversary actively concealing themselves.
+    print("\ntime to discovery, by what caused it")
+    print("  error only (no hacking)   %s" % describe(error_discovery))
+    print("  hacking (no error)        %s" % describe(hacking_discovery))
+    if error_discovery and hacking_discovery:
+        e = statistics.median(error_discovery)
+        h = statistics.median(hacking_discovery)
+        print("  → a self-inflicted breach takes %.0f%% longer to find than an "
+              "actively concealed one." % (100 * (e - h) / h))
 
     # A single drawing shows one incident's timeline, so the phases in it have to
     # come from the same incidents. Comparing a median drawn from 1,342 records
