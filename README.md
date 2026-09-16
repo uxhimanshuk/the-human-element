@@ -11,6 +11,9 @@ them, and asks what the interfaces had in common.
 
 Everything here is reproducible from public data with the standard library.
 
+**→ [Read the report](https://the-human-element.netlify.app)** — the findings, with six
+figures drawn from the derived data.
+
 ---
 
 ## What it found
