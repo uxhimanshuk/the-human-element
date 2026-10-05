@@ -122,7 +122,7 @@ Open it straight from disk.
 
 ## See also
 
-[`to-scale`](https://uxrhimanshu.github.io/to-scale/) — the breach timelines in this
+[`to-scale`](https://uxhimanshuk.github.io/to-scale/) — the breach timelines in this
 dataset, drawn as architectural sections. `pipeline/timelines.py` derives the figures it
 uses: median 30.4 days to discovery, 2 days to containment on the 93 incidents recording
 both. It also turned up a finding that belongs to this study rather than that one —
@@ -131,7 +131,7 @@ after a median of **91.3 days** (n=297); hacking after **60.9** (n=309). Nobody 
 misconfiguration, and it still takes half again as long to notice as an adversary who is
 actively hiding, which is the strongest version yet of this study's central claim.
 
-[`clicked-through`](https://github.com/uxrhimanshu/clicked-through) — the
+[`clicked-through`](https://github.com/uxhimanshuk/clicked-through) — the
 qualitative counterpart. This study establishes from incident records that
 warnings and defaults fail at scale, but cannot say *why* anyone proceeded,
 because VCDB stores outcomes rather than reasoning. That one asks technical
@@ -145,5 +145,5 @@ inside it.
 
 ---
 
-Built by [Himanshu Kalra](https://uxrhimanshu.com). Data: the VERIS Community Database,
+Built by [Himanshu Kalra](https://himanshukalra.com). Data: the VERIS Community Database,
 used under its own licence. Code here is MIT.
